@@ -1,9 +1,7 @@
-import Counter from './components/Counter'
-import CounterActions from './components/CounterActions'
+
 import { connect } from "react-redux"
-import Header from './components/Header'
-import Footer from './components/Footer'
-import {routes} from './routes'
+
+import { routes } from './routes'
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -20,20 +18,20 @@ function App({ dark, user }) {
 	return (
 		<Router>
 			<div className={dark ? 'dark' : 'light'}>
-				<Header/>
+
 				{/*<Counter />*/}
 				{/*<CounterActions />*/}
 				<Switch>
 					{routes.map(route => (
 						<Route exact={route.exact} path={route.path} render={() => {
 							if (route.auth && !user) {
-								return <Redirect to="/login"/>
+								return <Redirect to="/login" />
 							}
-							return <route.component/>
-						}}/>
+							return <route.page />
+						}} />
 					))}
 				</Switch>
-				<Footer/>
+
 			</div>
 		</Router>
 	);
